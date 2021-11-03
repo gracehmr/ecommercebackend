@@ -8,9 +8,9 @@ const deleteAllProducts = async () => await Product.destroy({truncate: true});
 
 const oneProduct = async (id) => await Product.findOne({where: {id}});
 
-const editProduct = async (id, name, description, price, imageUrl) => {
+const editProduct = async (id, productName, description, price, category, imageUrl) => {
     const item = await Product.findOne({where: {id}});
-    return Product.update({name: name || item.name, description: description || item.description, price: price || item.price, imageUrl: imageUrl || item.imageUrl}, {where: {id}})
+    return Product.update({productName: productName || item.productName, description: description || item.description, price: price || item.price, category: category || item.category, imageUrl: imageUrl || item.imageUrl}, {where: {id}})
 };
 
 const deleteProduct = async (id) => await Product.destroy({where: {id}});

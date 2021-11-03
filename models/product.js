@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const connection = require("../connection");
 
 const Product = connection.define("Product", {
-    name: {
+    productName: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -17,12 +17,17 @@ const Product = connection.define("Product", {
         allowNull: false
     },
 
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
     imageUrl: {
         type: DataTypes.STRING,
         allownull: false
     }
 }, {
-    indexes: [{unique: true, fields: ["name"]}]
+    indexes: [{unique: true, fields: ["productName"]}]
 });
 
 module.exports = Product;
