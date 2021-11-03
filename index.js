@@ -11,6 +11,8 @@ const User = require("./models/user");
 const userRouter = require("./routes/user");
 const Product = require("./models/product");
 const productRouter = require("./routes/product");
+const Order = require("./models/order");
+const orderRouter = require("./routes/order");
 
 app.use(express.json());
 app.use(cors());
@@ -20,7 +22,8 @@ passport.use("register", registerStrategy);
 passport.use("login", loginStrategy);
 passport.use(verifyStrategy);
 app.use("/product", productRouter);
-app.use("/users", userRouter)
+app.use("/users", userRouter);
+app.use("/orders", orderRouter);
 app.get("*", (req, res) => {
     res.status(404).json({msg: "error"})
 });
@@ -29,5 +32,6 @@ app.listen(process.env.PORT || process.env.HTTP_PORT || 80, () => {
     connection.authenticate();
     User.sync({alter:true});
     Product.sync({alter: true});
+    Order.sync({alter: true});
     console.log("App online");
 });
